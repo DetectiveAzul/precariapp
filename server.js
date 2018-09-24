@@ -3,6 +3,7 @@ const Koa = require('koa');
 const cors = require('@koa/cors');
 const bodyParser = require('koa-bodyparser');
 const serve = require('koa-static');
+const logger = require('koa-logger');
 
 //Initialization
 const app = new Koa();
@@ -12,6 +13,7 @@ const router = require('./server/index.js');
 //Koa using
 app.use(cors());
 app.use(bodyParser());
+app.use(logger());
 app.use(router.routes());
 app.use(serve(__dirname + '/client/public'));
 

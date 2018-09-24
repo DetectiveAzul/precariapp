@@ -1,4 +1,6 @@
 // CREATE ON THIS SAME FOLDER A FILE CALLED 'config.js' and copy the following content: 
 module.exports = {
-	url: 'INSERT URL HERE'
+	uri: 'INSERT URI HERE',
+	max: 100,
+	min: 1
 };

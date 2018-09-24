@@ -16,5 +16,9 @@ router.get('/api/v1', async ctx => {
 
 //Re-routing
 router.use(categoryRouter.routes());
+//router.use(userRouter.routes());
+//router.use(customerRouter.routes());
+//router.use(ticketRouter.routes());
+
 
 module.exports = router;

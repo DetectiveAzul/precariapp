@@ -18,9 +18,9 @@ app.use(router.routes());
 app.use(serve(__dirname + '/client/public'));
 
 //Start listening
-const server = app.listen(PORT, () => {
+app.listen(PORT, () => {
 	console.log(`Server listening on port: ${PORT}`);
 });
 
 //Exporting
-module.exports = server;
+module.exports = app;

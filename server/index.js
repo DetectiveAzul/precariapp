@@ -1,9 +1,12 @@
 const Router = require('koa-router');
 const router = new Router();
 const app = require('../server.js');
+const categoryRouter = require('./routers/categoryRouter.js');
+
 //Connection to DB
 require('./db/mongo.js')(app);
 
+//Index Routes
 router.get('/api/v1', async ctx => {
 	ctx.body = {
 		status: 'success',
@@ -11,20 +14,7 @@ router.get('/api/v1', async ctx => {
 	};
 });
 
-//TESTING DB BEFORE GOING FURTHER
-router.get('/api/v1/categories', async ctx => {
-	try {
-		const categoryData = await app.categories.find().toArray();
-		ctx.body = {
-			status: 'success',
-			data: categoryData
-		};
-	} catch (error) {
-		ctx.body = {
-			status: 'error',
-			message: error.message || 'Sorry, an error has occurred.'
-		};
-	}
-});
+//Re-routing
+router.use(categoryRouter.routes());
 
 module.exports = router;

@@ -1,7 +1,8 @@
 const Koa = require('koa');
 const app = new Koa();
-const serve = require('koa-static');
 
-app.use(serve(__dirname + '/client/index.html'));
+const PORT = process.env.PORT || 3001 ;
 
-app.listen(3000);
+const server = app.listen(PORT, () => {
+    console.log(`Server listening on port: ${PORT}`);
+});

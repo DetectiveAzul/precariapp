@@ -2,6 +2,8 @@ const Koa = require('koa');
 //Midleware
 const cors = require('@koa/cors');
 const bodyParser = require('koa-bodyparser');
+const serve = require('koa-static');
+
 //Initialization
 const app = new Koa();
 const PORT = process.env.PORT || 3000;
@@ -11,6 +13,7 @@ const router = require('./server/index.js');
 app.use(cors());
 app.use(bodyParser());
 app.use(router.routes());
+app.use(serve(__dirname + '/client/public'));
 
 //Start listening
 const server = app.listen(PORT, () => {

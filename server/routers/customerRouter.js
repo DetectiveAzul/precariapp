@@ -75,7 +75,7 @@ router.get(`${BASE_URL}/:index`, async ctx => {
 router.get(`${BASE_URL}/id/:id`, async ctx => {
 	try {
 		const id = ctx.params.id;
-		const customerData = await app.customerData
+		const customerData = await app.customers
 			.find({ _id: ObjectID(id) })
 			.toArray();
 		if (customerData) {

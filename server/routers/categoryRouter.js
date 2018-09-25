@@ -8,11 +8,13 @@ const BASE_URL = '/api/v1/categories';
 router.get(`${BASE_URL}`, async ctx => {
 	try {
 		const categoryData = await app.categories.find().toArray();
+		ctx.status = 200;
 		ctx.body = {
 			status: 'success',
 			data: categoryData
 		};
 	} catch (error) {
+		ctx.status = 400;
 		ctx.body = {
 			status: 'error',
 			message: error.message || 'Sorry, an error has occurred.'
@@ -37,6 +39,7 @@ router.get(`${BASE_URL}/:index`, async ctx => {
 			};
 		}
 	} catch (error) {
+		ctx.status = 400;
 		ctx.body = {
 			status: 'error',
 			message: error.message || 'Sorry, an error has ocurred.'
@@ -62,6 +65,7 @@ router.get(`${BASE_URL}/id/:id`, async ctx => {
 			};
 		}
 	} catch (error) {
+		ctx.status = 400;
 		ctx.body = {
 			status: 'error',
 			message: error.message || 'Sorry, an error has ocurred.'

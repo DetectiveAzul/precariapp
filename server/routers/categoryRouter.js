@@ -1,5 +1,6 @@
 const Router = require('koa-router');
 const router = new Router();
+const ObjectID = require('mongodb').ObjectID;
 
 const app = require('../../server.js');
 const BASE_URL = '/api/v1/categories';
@@ -27,6 +28,31 @@ router.get(`${BASE_URL}/:index`, async ctx => {
 			ctx.body = {
 				status: 'success',
 				data: categoryData[ctx.params.index]
+			};
+		} else {
+			ctx.status = 404;
+			ctx.body = {
+				status: 'error',
+				message: 'That element does not exist on the collection'
+			};
+		}
+	} catch (error) {
+		ctx.body = {
+			status: 'error',
+			message: error.message || 'Sorry, an error has ocurred.'
+		};
+	}
+});
+
+router.get(`${BASE_URL}/id/:id`, async ctx => {
+	try {
+		const id = ctx.params.id;
+		const categoryData = await app.categories.find({_id: ObjectID(id)}).toArray();
+		if (categoryData) {
+			ctx.status = 200;
+			ctx.body = {
+				status: 'success',
+				data: categoryData
 			};
 		} else {
 			ctx.status = 404;

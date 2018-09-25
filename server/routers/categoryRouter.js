@@ -102,6 +102,30 @@ router.get(`${BASE_URL}/id/:id`, async ctx => {
 });
 
 //PUT /api/v1/categories/id/:id
+router.put(`${BASE_URL}/id/:id`, async ctx => {
+	try {
+		const id = ctx.params.id;
+		const newInfo = ctx.request.body.data;
+		await app.categories.updateOne(
+			{ _id: ObjectID(id)},
+			{ $set: newInfo },
+			{ upsert: true }
+		);
+		const updatedCategory =  await app.categories.findOne({_id: ObjectID(id)});
+		ctx.status = 200;
+		ctx.body = {
+			status: 'success',
+			message: `Updated object id ${id} successfully`,
+			data: updatedCategory
+		};
+	} catch (error) {
+		ctx.status = 400;
+		ctx.body = {
+			status: 'error',
+			message: error.message || 'Sorry, an error has ocurred.'
+		};
+	}
+});
 
 //DELETE /api/v1/categories/id/:id
 router.delete(`${BASE_URL}/id/:id`, async ctx => {

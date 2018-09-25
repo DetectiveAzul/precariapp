@@ -111,12 +111,12 @@ router.put(`${BASE_URL}/id/:id`, async ctx => {
 			{ $set: newInfo },
 			{ upsert: true }
 		);
-		const updateduser =  await app.users.findOne({_id: ObjectID(id)});
+		const updatedUser =  await app.users.findOne({_id: ObjectID(id)});
 		ctx.status = 200;
 		ctx.body = {
 			status: 'success',
 			message: `Updated object id ${id} successfully`,
-			data: updateduser
+			data: updatedUser
 		};
 	} catch (error) {
 		ctx.status = 400;

@@ -29,22 +29,22 @@ export const ticketStatus = {
 // of the app, but first we need to work out the rest of them.
 
 export function addTicket(ticket) {
-	return { type: ADD_TICKET, ticket };
+	return { type: ADD_TICKET, ticket: ticket };
 }
 
 export function removeTicket(ticket) {
-	return { type: REMOVE_TICKET, ticket };
+	return { type: REMOVE_TICKET, ticket: ticket };
 }
 
 export function openTicket(_id) {
-	return { type: OPEN_TICKET, _id };
+	return { type: OPEN_TICKET, _id: _id };
 }
 
 export function closeTicket(_id) {
-	return { type: CLOSE_TICKET, _id };
+	return { type: CLOSE_TICKET, _id: _id };
 }
 
 export function setVisibilityFilter(filter) {
-	return { type: SET_VISIBILITY_FILTER, filter };
+	return { type: SET_VISIBILITY_FILTER, filter: filter };
 }
 

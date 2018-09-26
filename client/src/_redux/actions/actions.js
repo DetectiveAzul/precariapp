@@ -17,6 +17,11 @@ export const visibilityFilters = {
 	SHOW_NONE: 'SHOW_NONE'
 };
 
+export const ticketStatus = {
+	OPEN: 'OPEN',
+	CLOSED: 'CLOSED'
+};
+
 //ACTIONS
 
 
@@ -31,12 +36,12 @@ export function removeTicket(ticket) {
 	return { type: REMOVE_TICKET, ticket };
 }
 
-export function openTicket(ticket) {
-	return { type: OPEN_TICKET, ticket };
+export function openTicket(_id) {
+	return { type: OPEN_TICKET, _id };
 }
 
-export function closeTicket(ticket) {
-	return { type: CLOSE_TICKET, ticket };
+export function closeTicket(_id) {
+	return { type: CLOSE_TICKET, _id };
 }
 
 export function setVisibilityFilter(filter) {

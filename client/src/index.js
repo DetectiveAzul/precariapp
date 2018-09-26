@@ -4,8 +4,9 @@ import App from './App.js';
 
 //Redux imports
 import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
 import logger from 'redux-logger';
-import precariApp from './reducers/reducers.js';
+import precariApp from './_redux/reducers/reducers.js';
 
 const store = createStore(
 	precariApp,
@@ -14,8 +15,8 @@ const store = createStore(
 );
 
 ReactDOM.render(
-	<Provider>
-		<App store={store} />
+	<Provider store={store}>
+		<App />
 	</Provider>,
 	document.getElementById('root')
 );
